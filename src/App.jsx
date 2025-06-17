@@ -21,9 +21,18 @@ const App = () => {
     }
     if (question.trim()) {
       const history = JSON.parse(localStorage.getItem('history') || '[]');
-      const updatedHistory = [question, ...history];
-      localStorage.setItem('history', JSON.stringify(updatedHistory));
-      setRecentHistory(updatedHistory);
+
+      // Normalize for comparison (case-insensitive + trim)
+      const normalizedQuestion = question.trim().toLowerCase();
+      const isDuplicate = history.some(
+        item => item.trim().toLowerCase() === normalizedQuestion
+      );
+
+      if (!isDuplicate) {
+        const updatedHistory = [question, ...history];
+        localStorage.setItem('history', JSON.stringify(updatedHistory));
+        setRecentHistory(updatedHistory);
+      }
     }
     const payloadData = question ? question : selectedHistory;
     let payload = {
@@ -78,7 +87,7 @@ const App = () => {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
-  }, [darkMode])
+  }, [darkMode]);
   return (
     <div className='grid grid-cols-5 lg:text-center h-screen'>
       {/* left */}
