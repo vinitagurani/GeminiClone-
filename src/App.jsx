@@ -100,9 +100,9 @@ const App = () => {
         </select>
       </div>
       {/* right */}
-      <div className='col-span-4 text-center'>
+      <div className='col-span-4 text-center max-h-[80vh] min-h-[80vh] p-2 relative'>
         {
-          result.length === 0 && <h1 className=' text-bold lg:text-4xl text-2xl bg-clip-text  bg-gradient-to-r dark:from-red-400 dark:via-indigo-300 dark:to-purple-400 text-transparent from-red-700 via-indigo-600 to-purple-950'>Hello User, Ask me Anything </h1>
+          result.length === 0 && <h1 className='absolute top-10 left-70  text-bold lg:text-4xl text-2xl bg-clip-text  bg-gradient-to-r dark:from-red-400 dark:via-indigo-300 dark:to-purple-400 text-transparent from-red-700 via-indigo-600 to-purple-950 pb-5'>Hello User, Ask me Anything </h1>
         }
         <div className='container p-3 overflow-y-scroll mb-4 scroll-smooth scrollbar-hide max-h-[80vh] min-h-[80vh]' ref={scrollToAns}>
           <div className='dark:text-zinc-300 '>
@@ -115,10 +115,10 @@ const App = () => {
             </ul>
           </div>
         </div>
-        <div className='dark:bg-zinc-800 w-1/2 dark:text-white m-auto rounded-4xl border-1 dark:border-zinc-700 flex  p-1 '>
-          <input type="text" placeholder='Ask me anything' className='dark:text-white w-full outline-none p-3' onChange={(e) => setQuestion(e.target.value)} value={question} onKeyDown={enterClick} />
-          <button className='p-3 cursor-pointer' onClick={() => askQuestion()}>
-            {loader ? <Spinner size="1.5rem" /> : 'Ask'}
+        <div className='dark:bg-zinc-800 w-1/2 dark:text-white m-auto rounded-4xl border-1 dark:border-zinc-700 flex p-3 items-center max-h-50'>
+          <input type="text" placeholder='Ask me anything' className='dark:text-white w-full outline-none' onChange={(e) => setQuestion(e.target.value)} value={question} onKeyDown={enterClick} />
+          <button className='cursor-pointer' onClick={() => askQuestion()}>
+            {loader ? <Spinner size="1rem" /> : 'Ask'}
           </button>
         </div>
       </div>
